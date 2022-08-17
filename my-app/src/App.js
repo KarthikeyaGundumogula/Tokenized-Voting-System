@@ -15,7 +15,7 @@ function App() {
       document.getElementById("div").innerHTML=`<div><h5>address: ${add}</h5> <h5>balance: ${Number(balance)}</h5></div>`
       return signer;
     }catch(e){
-      console.log(e)
+      document.getElementById("div").innerHTML=`<div><h5>error: ${e}</h5></div>`
   }
 }
   async function mint_Token(){
@@ -23,8 +23,6 @@ function App() {
       const signer=await connect()
       const token=new ethers.Contract(ADDRESS,ABI,signer)
       await token.grantVote()     
-      let amount=await token.balanceOf(signer.getAddress())
-      amount=ethers.utils.formatEther(amount)
       document.getElementById("mint").innerHTML=`<div>
       <h5>your Vote Id:${await token.name()}</h5>
       </div>`
@@ -33,7 +31,7 @@ function App() {
         const signer=await connect()
         const token=new ethers.Contract(ADDRESS,ABI,signer)
         document.getElementById("mint").innerHTML=`<div>you are already registered
-        <h5>your Vote Id:${await token.name()}</h5>
+        <h5>your Vote Id:${await token.name()}${Math.floor(Math.random()*1234)}</h5>
         </div>`
       }catch(e){
         document.getElementById("mint").innerHTML=`<div><h5>Error Occured</h5></div>`
@@ -43,7 +41,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Hello World</h1>
+        <h1>Decentralized Voting System</h1>
         <button onClick={connect}>Connect</button><br></br>
         <div id="div"></div>
         <button onClick={mint_Token}>GetVote</button>
