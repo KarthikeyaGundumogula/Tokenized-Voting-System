@@ -38,6 +38,9 @@ function App() {
       }
     }
   }
+  async function system(){
+    console.log("system")
+  }
   return (
     <div className="App">
       <header>
@@ -46,6 +49,7 @@ function App() {
         <div id="div"></div>
         <button onClick={mint_Token}>GetVote</button>
         <div id="mint"></div>
+        <button onClick={system}>Conduct Election</button>
       </header>
     </div>
   );
